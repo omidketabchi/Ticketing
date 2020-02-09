@@ -13,7 +13,8 @@
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimaryAb">
+            android:background="@color/colorPrimaryAb"
+            app:elevation="0dp">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/tlb_main_toolbar"
@@ -43,6 +44,7 @@
                         android:textSize="25sp" />
 
                     <ImageView
+                        android:id="@+id/img_main_hamberMenu"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -58,15 +60,14 @@
 
         <include layout="@layout/tab_layout" />
 
-
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nv_main_navigationView"
-        layout_gravity="right"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_gravity="right">
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -99,6 +100,7 @@
                     android:layout_below="@+id/txt_navigation_email" />
 
                 <Button
+                    android:id="@+id/btn_navigation_support"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
