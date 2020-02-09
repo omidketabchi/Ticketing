@@ -103,6 +103,7 @@
                     android:id="@+id/btn_navigation_support"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/rv_navigation_recyclerView"
                     android:layout_alignParentBottom="true"
                     android:layout_margin="8dp"
                     android:background="@drawable/btn_blue_style"
