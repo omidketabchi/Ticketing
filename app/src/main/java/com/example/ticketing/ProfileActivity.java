@@ -132,6 +132,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         if (requestCode == REQUEST_EDIT_PROFILE && resultCode == RESULT_OK && data != null) {
 
+            profiles = data.getParcelableArrayListExtra("info");
         }
     }
 }
