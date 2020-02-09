@@ -1,5 +1,6 @@
 package com.example.ticketing;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProfileActivity extends AppCompatActivity {
+
+    private static final int REQUEST_EDIT_PROFILE = 758;
 
     ImageView imgBack;
     ImageView imgExit;
@@ -75,7 +78,7 @@ public class ProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(ProfileActivity.this, EditProfileActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, REQUEST_EDIT_PROFILE);
             }
         });
 
@@ -122,5 +125,13 @@ public class ProfileActivity extends AppCompatActivity {
         profiles.add(birthDateEntity);
 
         recyclerView.setAdapter(new ProfileAdapter(ProfileActivity.this, profiles));
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+
+        if (requestCode == REQUEST_EDIT_PROFILE && resultCode == RESULT_OK && data != null) {
+
+        }
     }
 }
