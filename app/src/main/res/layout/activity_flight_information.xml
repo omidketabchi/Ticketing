@@ -1,15 +1,369 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorGray200"
     tools:context=".FlightInformationActivity">
 
-    <RelativeLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tlb_flightInformation_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimaryDarkAb">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/img_flightInformation_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="16dp"
+                android:src="@drawable/ic_arrow_forward_white_24dp" />
+
+            <TextView
+                android:id="@+id/txt_flightInformation_ticketInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginRight="8dp"
+                android:layout_toLeftOf="@+id/img_flightInformation_back"
+                android:text="اطلاعات بلیط"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txt_flightInformation_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_flightInformation_ticketInfo"
+                android:layout_alignRight="@+id/txt_flightInformation_ticketInfo"
+                android:layout_marginTop="8dp"
+                android:text="12 اردیبهشت 1398"
+                android:textColor="@color/colorWhite"
+                android:textSize="14sp" />
+        </RelativeLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <RelativeLayout
+        android:id="@+id/rl_flightInformation_flightInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tlb_flightInformation_toolbar">
+
+        <TextView
+            android:id="@+id/txt_flightInformation_flightInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_margin="8dp"
+            android:text="اطلاعات پرواز"
+            android:textColor="@color/colorBlack"
+            android:textSize="18sp" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_flightInformation_card1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_flightInformation_flightInfo">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/img_flightInformation_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="8dp"
+                    android:src="@drawable/ic_airplane_black_24dp" />
+
+                <TextView
+                    android:id="@+id/txt_flightInformation_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_toLeftOf="@+id/img_flightInformation_icon"
+                    android:text="12:45"
+                    android:textColor="@color/colorAccentAb"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/txt_flightInformation_source"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/txt_flightInformation_time"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="16sp"
+                    tools:text="اصفهان - فرودگاه شهید بهشتی اصفهان" />
+
+                <TextView
+                    android:id="@+id/txt_flightInformation_destination"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txt_flightInformation_source"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_toLeftOf="@+id/txt_flightInformation_time"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="16sp"
+                    tools:text="تبریز - فرودگاه تبریز" />
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_flightInformation_card2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cv_flightInformation_card1"
+            android:layout_marginTop="4dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txt_flightInformation_flightNoTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="16dp"
+                    android:text="شماره پرواز:"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/txt_flightInformation_flightNoValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:layout_toLeftOf="@+id/txt_flightInformation_flightNoTitle"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="16sp"
+                    tools:text="123456" />
+
+                <TextView
+                    android:id="@+id/txt_flightInformation_typeTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toRightOf="@+id/txt_flightInformation_typeValue"
+                    android:text="نوع:"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/txt_flightInformation_typeValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="16dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="16sp"
+                    tools:text="4586" />
+
+
+                <TextView
+                    android:id="@+id/txt_flightInformation_classTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txt_flightInformation_typeValue"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:text="کلاس:"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/txt_flightInformation_classValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txt_flightInformation_typeValue"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_toLeftOf="@+id/txt_flightInformation_classTitle"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="16sp"
+                    tools:text="123456" />
+
+                <TextView
+                    android:id="@+id/txt_flightInformation_loadTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txt_flightInformation_typeValue"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_toRightOf="@+id/txt_flightInformation_loadValue"
+                    android:text="بار مجاز:"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/txt_flightInformation_loadValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txt_flightInformation_typeValue"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="16sp"
+                    tools:text="نامشخص" />
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/txt_flightInformation_penaltyRules"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cv_flightInformation_card2"
+            android:layout_alignParentRight="true"
+            android:layout_margin="8dp"
+            android:padding="8dp"
+            android:text="قوانین جریمه و استرداد"
+            android:textColor="@color/colorBlack" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_flightInformation_penaltyList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_flightInformation_penaltyRules" />
+
+        <TextView
+            android:id="@+id/txt_flightInformation_prices"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rv_flightInformation_penaltyList"
+            android:layout_alignParentRight="true"
+            android:layout_margin="8dp"
+            android:padding="8dp"
+            android:text="قیمت ها:"
+            android:textColor="@color/colorBlack" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_flightInformation_card3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_flightInformation_prices">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txt_flightInformation_youngTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="4dp"
+                    android:text="بلیط بزرگسال:"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/txt_flightInformation_youngValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/colorAccentAb"
+                    android:textSize="18sp"
+                    tools:text="123,123 ریال" />
+
+                <TextView
+                    android:id="@+id/txt_flightInformation_childTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txt_flightInformation_youngValue"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="4dp"
+                    android:text="بلیط کودک:"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/txt_flightInformation_childValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txt_flightInformation_youngValue"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/colorAccentAb"
+                    android:textSize="18sp"
+                    tools:text="100,123 ریال" />
+
+                <TextView
+                    android:id="@+id/txt_flightInformation_babyTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txt_flightInformation_childValue"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="4dp"
+                    android:text="بلیط نوزاد:"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/txt_flightInformation_babyValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txt_flightInformation_childValue"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:textColor="@color/colorAccentAb"
+                    android:textSize="18sp"
+                    tools:text="80,123 ریال" />
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
 
     </RelativeLayout>
 
-</androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_flightInformation_card4"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_below="@+id/rl_flightInformation_flightInfo"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/btn_flightInformation_choose_ticket"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="8dp"
+                android:background="@drawable/btn_blue_style"
+                android:padding="15dp"
+                android:text="انتخاب این بلیط"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
