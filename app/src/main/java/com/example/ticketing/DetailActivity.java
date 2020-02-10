@@ -80,6 +80,7 @@ public class DetailActivity extends AppCompatActivity {
         String date = bundle.getString("date");
 
         if (type.equals("flight")) {
+            imgIcon.setImageResource(R.drawable.ic_airplane_white_24dp);
             getAllFlightTickets(sodurce, destination, date);
         } else if (type.equals("train")) {
             getAllTrainTickets(sodurce, destination, date);
@@ -127,6 +128,9 @@ public class DetailActivity extends AppCompatActivity {
 
             try {
 
+                String firstKind = "";
+                String secondKind = "";
+
                 FlightModel flightModel = new FlightModel();
 
                 JSONObject jsonObject = response.getJSONObject(i);
@@ -138,7 +142,11 @@ public class DetailActivity extends AppCompatActivity {
                 flightModel.setDestinationAirport(jsonObject.getString("destination_airport"));
                 flightModel.setDate(jsonObject.getString("date"));
                 flightModel.setType(jsonObject.getString("type"));
-                flightModel.setKind(jsonObject.getString("kind"));
+
+                String[] kind = jsonObject.getString("kind").split("/");
+                flightModel.setFirstKind(kind[0]);
+                flightModel.setSecondKind(kind[1]);
+
                 flightModel.setCompany(jsonObject.getString("company"));
                 flightModel.setFlightTime(jsonObject.getString("flight_time"));
                 flightModel.setLandTime(jsonObject.getString("land_time"));

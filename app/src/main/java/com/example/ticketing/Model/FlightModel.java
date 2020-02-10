@@ -1,6 +1,9 @@
 package com.example.ticketing.Model;
 
-public class FlightModel {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class FlightModel implements Parcelable {
 
     private String id;
     private String source;
@@ -9,7 +12,8 @@ public class FlightModel {
     private String destinationAirport;
     private String date;
     private String type;
-    private String kind;
+    private String firstKind;
+    private String secondKind;
     private String company;
     private String flightTime;
     private String landTime;
@@ -75,14 +79,6 @@ public class FlightModel {
         this.type = type;
     }
 
-    public String getKind() {
-        return kind;
-    }
-
-    public void setKind(String kind) {
-        this.kind = kind;
-    }
-
     public String getCompany() {
         return company;
     }
@@ -146,4 +142,81 @@ public class FlightModel {
     public void setPriceBaby(String priceBaby) {
         this.priceBaby = priceBaby;
     }
+
+    public String getFirstKind() {
+        return firstKind;
+    }
+
+    public void setFirstKind(String firstKind) {
+        this.firstKind = firstKind;
+    }
+
+    public String getSecondKind() {
+        return secondKind;
+    }
+
+    public void setSecondKind(String secondKind) {
+        this.secondKind = secondKind;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.id);
+        dest.writeString(this.source);
+        dest.writeString(this.destination);
+        dest.writeString(this.sourceAirport);
+        dest.writeString(this.destinationAirport);
+        dest.writeString(this.date);
+        dest.writeString(this.type);
+        dest.writeString(this.firstKind);
+        dest.writeString(this.secondKind);
+        dest.writeString(this.company);
+        dest.writeString(this.flightTime);
+        dest.writeString(this.landTime);
+        dest.writeString(this.capacity);
+        dest.writeString(this.flightId);
+        dest.writeString(this.priceYoung);
+        dest.writeString(this.priceChild);
+        dest.writeString(this.priceBaby);
+    }
+
+    public FlightModel() {
+    }
+
+    protected FlightModel(Parcel in) {
+        this.id = in.readString();
+        this.source = in.readString();
+        this.destination = in.readString();
+        this.sourceAirport = in.readString();
+        this.destinationAirport = in.readString();
+        this.date = in.readString();
+        this.type = in.readString();
+        this.firstKind = in.readString();
+        this.secondKind = in.readString();
+        this.company = in.readString();
+        this.flightTime = in.readString();
+        this.landTime = in.readString();
+        this.capacity = in.readString();
+        this.flightId = in.readString();
+        this.priceYoung = in.readString();
+        this.priceChild = in.readString();
+        this.priceBaby = in.readString();
+    }
+
+    public static final Parcelable.Creator<FlightModel> CREATOR = new Parcelable.Creator<FlightModel>() {
+        @Override
+        public FlightModel createFromParcel(Parcel source) {
+            return new FlightModel(source);
+        }
+
+        @Override
+        public FlightModel[] newArray(int size) {
+            return new FlightModel[size];
+        }
+    };
 }
