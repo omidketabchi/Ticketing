@@ -23,4 +23,5 @@
     <color name="colorPrimaryAb">#FF9800</color>
     <color name="colorPrimaryDarkAb">#F57C00</color>
     <color name="colorAccentAb">#03A9F4</color>
+    <color name="colorSystem">#8BC34A</color>
 </resources>

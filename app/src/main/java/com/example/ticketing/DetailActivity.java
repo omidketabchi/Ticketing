@@ -1,6 +1,8 @@
 package com.example.ticketing;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,8 +18,16 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.daimajia.easing.linear.Linear;
+import com.example.ticketing.Adapter.FlightAdapter;
+import com.example.ticketing.Model.FlightModel;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -26,6 +36,9 @@ public class DetailActivity extends AppCompatActivity {
     TextView txtSource;
     TextView txtDestination;
     TextView txtDate;
+    RecyclerView recyclerView;
+
+    List<FlightModel> flightModels;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +52,15 @@ public class DetailActivity extends AppCompatActivity {
 
     private void setupViews() {
 
+        flightModels = new ArrayList<>();
+
         imgBack = (ImageView) findViewById(R.id.img_detail_back);
         imgIcon = (ImageView) findViewById(R.id.img_detail_icon);
         txtSource = (TextView) findViewById(R.id.txt_detail_source);
         txtDestination = (TextView) findViewById(R.id.txt_detail_destination);
         txtDate = (TextView) findViewById(R.id.txt_detail_date);
+        recyclerView = (RecyclerView) findViewById(R.id.rv_detail_list);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,7 +96,7 @@ public class DetailActivity extends AppCompatActivity {
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-
+                parseFlightResponse(response);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -102,5 +119,42 @@ public class DetailActivity extends AppCompatActivity {
 
     private void getAllTrainTickets(String source, String destination, String date) {
 
+    }
+
+    private void parseFlightResponse(JSONArray response) {
+
+        for (int i = 0; i < response.length(); i++) {
+
+            try {
+
+                FlightModel flightModel = new FlightModel();
+
+                JSONObject jsonObject = response.getJSONObject(i);
+
+                flightModel.setId(jsonObject.getString("id"));
+                flightModel.setSource(jsonObject.getString("source"));
+                flightModel.setDestination(jsonObject.getString("destination"));
+                flightModel.setSourceAirport(jsonObject.getString("source_airport"));
+                flightModel.setDestinationAirport(jsonObject.getString("destination_airport"));
+                flightModel.setDate(jsonObject.getString("date"));
+                flightModel.setType(jsonObject.getString("type"));
+                flightModel.setKind(jsonObject.getString("kind"));
+                flightModel.setCompany(jsonObject.getString("company"));
+                flightModel.setFlightTime(jsonObject.getString("flight_time"));
+                flightModel.setLandTime(jsonObject.getString("land_time"));
+                flightModel.setCapacity(jsonObject.getString("capacity"));
+                flightModel.setFlightId(jsonObject.getString("flight_id"));
+                flightModel.setPriceYoung(jsonObject.getString("price_young"));
+                flightModel.setPriceChild(jsonObject.getString("price_child"));
+                flightModel.setPriceBaby(jsonObject.getString("price_baby"));
+
+                flightModels.add(flightModel);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        recyclerView.setAdapter(new FlightAdapter(DetailActivity.this, flightModels));
     }
 }
