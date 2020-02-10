@@ -3,12 +3,15 @@ package com.example.ticketing;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatSpinner;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.provider.CalendarContract;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,9 +19,10 @@ import android.widget.TextView;
 import com.example.ticketing.Model.ProfileModel;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
-public class EditProfileActivity extends AppCompatActivity {
+public class EditProfileActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     ImageView imgBack;
     EditText edtName;
@@ -37,7 +41,6 @@ public class EditProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_profile);
 
         setupViews();
-
     }
 
     private void setupViews() {
@@ -65,16 +68,17 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-//                SharedPreferences sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
-//
-//                SharedPreferences.Editor editor = sharedPreferences.edit();
-//
-//                editor.putString("name", edtName.getText().toString());
-//                editor.putString("family", edtFamily.getText().toString());
-//                editor.putString("manOrWoman", spinner.getSelectedItem().toString());
-//                editor.putString("birthDate", txtBirthDateValue.getText().toString());
-//                editor.putString("code", edtCode.getText().toString());
-//                editor.putString("phone", edtPhone.getText().toString());
+                SharedPreferences sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                editor.putString("name", edtName.getText().toString());
+                editor.putString("family", edtFamily.getText().toString());
+                editor.putString("manOrWoman", spinner.getSelectedItem().toString());
+                editor.putString("birthDate", txtBirthDateValue.getText().toString());
+                editor.putString("code", edtCode.getText().toString());
+                editor.putString("phone", edtPhone.getText().toString());
+                editor.apply();
 
                 Intent intent = new Intent();
 
@@ -101,9 +105,45 @@ public class EditProfileActivity extends AppCompatActivity {
                 intent.putParcelableArrayListExtra("info", (ArrayList<? extends Parcelable>) profiles);
 
                 setResult(RESULT_OK, intent);
-
                 finish();
             }
         });
+
+        txtBirthDateTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setDate();
+            }
+        });
+
+        txtBirthDateValue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setDate();
+            }
+        });
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+
+        txtBirthDateValue.setText(String.format("%04d", year) + "/" +
+                String.format("%02d", month + 1) + "/" +
+                String.format("%02d", dayOfMonth));
+    }
+
+    private void setDate() {
+
+        Calendar calendar = Calendar.getInstance();
+
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(EditProfileActivity.this,
+                EditProfileActivity.this::onDateSet,
+                year, month, day);
+
+        datePickerDialog.show();
     }
 }

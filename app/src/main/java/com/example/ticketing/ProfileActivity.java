@@ -31,6 +31,9 @@ public class ProfileActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     List<ProfileModel> profiles;
     SharedPreferences sharedPreferences;
+    ProfileAdapter profileAdapter;
+    ProfileModel emailEntity;
+    ProfileModel balanceEntity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,12 +97,12 @@ public class ProfileActivity extends AppCompatActivity {
         String code = sharedPreferences.getString("code", "");
         String birthDate = sharedPreferences.getString("birthDate", "");
 
-        ProfileModel balanceEntity = new ProfileModel();
+        balanceEntity = new ProfileModel();
         balanceEntity.setTitle("موجودی:");
-        balanceEntity.setValue(balance + " ریال");
+        balanceEntity.setValue("0 ریال");
         profiles.add(balanceEntity);
 
-        ProfileModel emailEntity = new ProfileModel();
+        emailEntity = new ProfileModel();
         emailEntity.setTitle("ایمیل:");
         emailEntity.setValue(email);
         profiles.add(emailEntity);
@@ -124,7 +127,8 @@ public class ProfileActivity extends AppCompatActivity {
         birthDateEntity.setValue(birthDate);
         profiles.add(birthDateEntity);
 
-        recyclerView.setAdapter(new ProfileAdapter(ProfileActivity.this, profiles));
+        profileAdapter = new ProfileAdapter(ProfileActivity.this, profiles);
+        recyclerView.setAdapter(profileAdapter);
     }
 
     @Override
@@ -132,7 +136,14 @@ public class ProfileActivity extends AppCompatActivity {
 
         if (requestCode == REQUEST_EDIT_PROFILE && resultCode == RESULT_OK && data != null) {
 
-            profiles = data.getParcelableArrayListExtra("info");
+            profiles.clear();
+
+            profiles.add(emailEntity);
+            profiles.add(balanceEntity);
+
+            profiles.addAll(data.getParcelableArrayListExtra("info"));
+
+            profileAdapter.notifyDataSetChanged();
         }
     }
 }
