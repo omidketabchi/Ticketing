@@ -1,15 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <TextView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <RadioButton
+                android:id="@+id/rdb_insideFlight_twoway"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:text="دو طرفه" />
+
+            <RadioButton
+                android:id="@+id/rdb_insideFlight_oneway"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:checked="true"
+                android:text="یک طرفه" />
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/txt_fragmentInsideFlight_source"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/textview_style"
+            android:drawableRight="@drawable/ic_airplane_black_24dp"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="شهر مبدا"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/txt_fragmentInsideFlight_destination"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/textview_style"
+            android:drawableRight="@drawable/ic_airplane_black_24dp"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="شهر مقصد"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/txt_fragmentInsideFlight_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/textview_style"
+            android:drawableRight="@drawable/ic_date_range_black_24dp"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="تاریخ رفت"
+            android:textSize="18sp" />
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/chb_fragmentInsideFlight_coupe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:text="کوپه دربستی می خواهم" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_fragmentInsideFlight_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:gravity="center"
-        android:text="Inside Ilight"
-        android:textSize="30sp" />
+        android:layout_alignParentBottom="true"
+        android:layout_margin="8dp"
+        android:background="@drawable/btn_blue_style"
+        android:padding="15dp"
+        android:text="جستجو"
+        android:textColor="@color/colorWhite"
+        android:textSize="18sp" />
 
-</LinearLayout>
+</RelativeLayout>
