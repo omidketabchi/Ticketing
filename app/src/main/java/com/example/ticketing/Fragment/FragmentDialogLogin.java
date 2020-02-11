@@ -28,7 +28,7 @@ import org.json.JSONArray;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FragmentLogin extends DialogFragment {
+public class FragmentDialogLogin extends DialogFragment {
 
     private OnLoginSignupSuccess onLoginSignupSuccess;
 
@@ -44,7 +44,7 @@ public class FragmentLogin extends DialogFragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
 
-        view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_login, null);
+        view = LayoutInflater.from(getContext()).inflate(R.layout.login_dialog, null);
 
         builder.setView(view);
 

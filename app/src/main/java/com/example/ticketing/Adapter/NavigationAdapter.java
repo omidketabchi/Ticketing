@@ -16,7 +16,7 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ticketing.Fragment.FragmentLogin;
+import com.example.ticketing.Fragment.FragmentDialogLogin;
 import com.example.ticketing.Model.NavigationModel;
 import com.example.ticketing.ProfileActivity;
 import com.example.ticketing.R;
@@ -64,11 +64,11 @@ public class NavigationAdapter extends RecyclerView.Adapter<NavigationAdapter.Na
                 if (model.getTitle().equals("پروفایل کاربری")) {
 
                     if (email.equals("")) {
-                        FragmentLogin fragmentLogin = new FragmentLogin();
+                        FragmentDialogLogin fragmentLogin = new FragmentDialogLogin();
 
                         fragmentLogin.show(((AppCompatActivity) context).getSupportFragmentManager(), null);
 
-                        fragmentLogin.setOnLoginSignupSuccess(new FragmentLogin.OnLoginSignupSuccess() {
+                        fragmentLogin.setOnLoginSignupSuccess(new FragmentDialogLogin.OnLoginSignupSuccess() {
                             @Override
                             public void onSuccess(JSONArray response) {
                                 onNavigationReceiveDataSuccess.navigationReceiveDataSuccess(response);

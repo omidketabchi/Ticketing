@@ -18,7 +18,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.ticketing.Adapter.FlightAdapter;
+import com.example.ticketing.Adapter.TrainAdapter;
 import com.example.ticketing.Model.FlightModel;
+import com.example.ticketing.Model.TrainModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,6 +39,7 @@ public class DetailActivity extends AppCompatActivity {
     RecyclerView recyclerView;
 
     List<FlightModel> flightModels;
+    List<TrainModel> trainModels;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +54,7 @@ public class DetailActivity extends AppCompatActivity {
     private void setupViews() {
 
         flightModels = new ArrayList<>();
+        trainModels = new ArrayList<>();
 
         imgBack = (ImageView) findViewById(R.id.img_detail_back);
         imgIcon = (ImageView) findViewById(R.id.img_detail_icon);
@@ -88,6 +92,7 @@ public class DetailActivity extends AppCompatActivity {
             getAllOutsideFlightTickets(source, destination, date);
 
         } else if (type.equals("train")) {
+            imgIcon.setImageResource(R.drawable.ic_train_white_24dp);
             getAllTrainTickets(source, destination, date);
 
         } else if (type.equals("bus")) {
@@ -143,13 +148,32 @@ public class DetailActivity extends AppCompatActivity {
         requestQueue.add(jsonArrayRequest);
     }
 
-
     private void getAllBusTickets(String source, String destination, String date) {
 
     }
 
     private void getAllTrainTickets(String source, String destination, String date) {
 
+        String url = "https://1fc12221-ab17-4437-a934-a40d76961f01.mock.pstmn.io/?" + "source=" + source + "&destination=" + destination + "&date=" + date;
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+
+                parseTrainTicketResponse(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(DetailActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(15000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        RequestQueue requestQueue = Volley.newRequestQueue(DetailActivity.this);
+        requestQueue.add(jsonArrayRequest);
     }
 
     private void parseFlightResponse(JSONArray response) {
@@ -194,5 +218,36 @@ public class DetailActivity extends AppCompatActivity {
         }
 
         recyclerView.setAdapter(new FlightAdapter(DetailActivity.this, flightModels));
+    }
+
+    private void parseTrainTicketResponse(JSONArray response) {
+
+        for (int i = 0; i < response.length(); i++) {
+            try {
+
+                TrainModel model = new TrainModel();
+
+                JSONObject jsonObject = response.getJSONObject(i);
+
+                model.setId(jsonObject.getString("id"));
+                model.setTrainId(jsonObject.getString("train_id"));
+                model.setSource(jsonObject.getString("source"));
+                model.setDestination(jsonObject.getString("destination"));
+                model.setStartTime(jsonObject.getString("start_time"));
+                model.setEndTime(jsonObject.getString("end_time"));
+                model.setDate(jsonObject.getString("date"));
+                model.setType(jsonObject.getString("type"));
+                model.setCapacity(jsonObject.getString("capacity"));
+                model.setCoupeCapacity(jsonObject.getString("coupe_capacity"));
+                model.setPrice(jsonObject.getString("price"));
+
+                trainModels.add(model);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        recyclerView.setAdapter(new TrainAdapter(DetailActivity.this, trainModels));
     }
 }

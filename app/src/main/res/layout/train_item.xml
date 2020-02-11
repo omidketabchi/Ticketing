@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cv_trainItem_parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="8dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginBottom="4dp"
+    android:clickable="true"
+    android:foreground="?attr/selectableItemBackground"
+    app:cardCornerRadius="8dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/img_trainItem_live"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_live_tv_black_24dp" />
+
+        <ImageView
+            android:id="@+id/img_trainItem_toy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_toRightOf="@+id/img_trainItem_live"
+            android:src="@drawable/ic_toys_black_24dp" />
+
+        <TextView
+            android:id="@+id/txt_trainItem_endTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:textColor="@color/colorAccentAb"
+            android:textSize="16sp"
+            tools:text="11:30" />
+
+        <ImageView
+            android:id="@+id/img_trainItem_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="8dp"
+            android:layout_toLeftOf="@+id/txt_trainItem_endTime"
+            android:src="@drawable/ic_keyboard_arrow_right_black_24dp" />
+
+        <TextView
+            android:id="@+id/txt_trainItem_startTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="8dp"
+            android:layout_toLeftOf="@+id/img_trainItem_arrow"
+            android:textColor="@color/colorAccentAb"
+            android:textSize="16sp"
+            tools:text="08:30" />
+
+        <TextView
+            android:id="@+id/txt_trainItem_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_trainItem_endTime"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="32dp"
+            android:layout_marginRight="16dp"
+            android:textSize="16sp"
+            tools:text="::نور" />
+
+        <TextView
+            android:id="@+id/txt_trainItem_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_trainItem_endTime"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="32dp"
+            android:textColor="@color/colorAccentAb"
+            android:textSize="16sp"
+            tools:text="123,234 ریال" />
+
+        <TextView
+            android:id="@+id/txt_trainItem_capacity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_trainItem_price"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="8dp"
+            android:textSize="16sp"
+            tools:text="4 نفر" />
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

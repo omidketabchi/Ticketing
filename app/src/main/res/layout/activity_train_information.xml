@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TrainInformationActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tlb_trainInfo_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimaryDarkAb">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/img_trainInfo_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="16dp"
+                android:src="@drawable/ic_arrow_forward_white_24dp" />
+
+            <TextView
+                android:id="@+id/txt_trainInfo_source"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:layout_toLeftOf="@+id/img_trainInfo_back"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"
+                tools:text="تهران - مشهد" />
+
+            <TextView
+                android:id="@+id/txt_trainInfo_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_trainInfo_source"
+                android:layout_alignRight="@+id/txt_trainInfo_source"
+                android:textColor="@color/colorWhite"
+                android:textSize="16sp"
+                tools:text="2020/12/11" />
+
+        </RelativeLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tlb_trainInfo_toolbar">
+
+        <TextView
+            android:id="@+id/txt_trainInfo_trainNoTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_margin="16dp"
+            android:text="شماره قطار"
+            android:textSize="16sp" />
+
+
+        <TextView
+            android:id="@+id/txt_trainInfo_trainNoValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_toLeftOf="@+id/txt_trainInfo_trainNoTitle"
+            android:textSize="16sp"
+            tools:text="1234" />
+
+        <TextView
+            android:id="@+id/txt_trainInfo_trainTypeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_trainInfo_trainNoValue"
+            android:layout_alignParentRight="true"
+            android:layout_margin="16dp"
+            android:text="نوع واگن"
+            android:textSize="16sp" />
+
+
+        <TextView
+            android:id="@+id/txt_trainInfo_trainTypeValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_trainInfo_trainNoValue"
+            android:layout_margin="16dp"
+            android:layout_toLeftOf="@+id/txt_trainInfo_trainNoTitle"
+            android:textSize="16sp"
+            tools:text="نور" />
+
+        <TextView
+            android:id="@+id/txt_trainInfo_trainCoupeCapacityTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_trainInfo_trainTypeValue"
+            android:layout_alignParentRight="true"
+            android:layout_margin="16dp"
+            android:text="ظرفیت کوپه"
+            android:textSize="16sp" />
+
+
+        <TextView
+            android:id="@+id/txt_trainInfo_trainCoupeCapacityValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_trainInfo_trainTypeValue"
+            android:layout_margin="16dp"
+            android:layout_toLeftOf="@+id/txt_trainInfo_trainNoTitle"
+            android:textSize="16sp"
+            tools:text="8 نفر" />
+
+        <TextView
+            android:id="@+id/txt_trainInfo_trainPriceTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_trainInfo_trainCoupeCapacityValue"
+            android:layout_alignParentRight="true"
+            android:layout_margin="16dp"
+            android:text="قیمت بزرگسال"
+            android:textSize="16sp" />
+
+
+        <TextView
+            android:id="@+id/txt_trainInfo_trainPriceValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_trainInfo_trainCoupeCapacityValue"
+            android:layout_margin="16dp"
+            android:layout_toLeftOf="@+id/txt_trainInfo_trainNoTitle"
+            android:textColor="@color/colorAccentAb"
+            android:textSize="16sp"
+            tools:text="123,456 ریال" />
+
+        <View
+            android:id="@+id/view_trainInfo_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/txt_trainInfo_trainPriceValue"
+            android:layout_margin="8dp"
+            android:background="@color/colorGray600" />
+
+    </RelativeLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/btn_trainInfo_buyTicket"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/btn_blue_style"
+            android:text="خرید این بلیط"
+            android:textColor="@color/colorWhite" />
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
