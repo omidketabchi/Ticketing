@@ -43,11 +43,11 @@ public class FlightAdapter extends RecyclerView.Adapter<FlightAdapter.FlightView
         FlightModel model = models.get(position);
 
         holder.txtName.setText(model.getCompany());
-        holder.txtFirstKind.setText(model.getCompany());
-        holder.txtSecondKind.setText(model.getCompany());
-        holder.txtCapacity.setText(model.getCompany());
-        holder.txtPrice.setText(model.getCompany());
-        holder.txtTime.setText(model.getCompany());
+        holder.txtFirstKind.setText(model.getFirstKind());
+        holder.txtSecondKind.setText(model.getSecondKind());
+        holder.txtCapacity.setText(model.getCapacity());
+        holder.txtPrice.setText(model.getPriceYoung());
+        holder.txtTime.setText(model.getFlightTime());
 
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override

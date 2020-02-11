@@ -75,18 +75,22 @@ public class DetailActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
 
         String type = bundle.getString("type");
-        String sodurce = bundle.getString("source");
+        String source = bundle.getString("source");
         String destination = bundle.getString("destination");
         String date = bundle.getString("date");
 
+        txtSource.setText(source);
+        txtDestination.setText(destination);
+        txtDate.setText(date);
+
         if (type.equals("flight")) {
             imgIcon.setImageResource(R.drawable.ic_airplane_white_24dp);
-            getAllFlightTickets(sodurce, destination, date);
+            getAllFlightTickets(source, destination, date);
         } else if (type.equals("train")) {
-            getAllTrainTickets(sodurce, destination, date);
+            getAllTrainTickets(source, destination, date);
 
         } else if (type.equals("bus")) {
-            getAllBusTickets(sodurce, destination, date);
+            getAllBusTickets(source, destination, date);
         }
     }
 

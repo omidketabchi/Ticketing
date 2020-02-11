@@ -59,6 +59,7 @@ public class FragmentInsideFlight extends Fragment implements DatePickerDialog.O
         txtSource.setOnClickListener(this::onClick);
         txtDestination.setOnClickListener(this::onClick);
         txtDate.setOnClickListener(this::onClick);
+        btnSearch.setOnClickListener(this::onClick);
     }
 
     @Override

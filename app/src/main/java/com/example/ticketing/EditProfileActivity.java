@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.provider.CalendarContract;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -63,6 +64,13 @@ public class EditProfileActivity extends AppCompatActivity implements DatePicker
                 finish();
             }
         });
+
+        List<String> list = new ArrayList<>();
+        list.add("مرد");
+        list.add("زن");
+
+        ArrayAdapter arrayAdapter = new ArrayAdapter(EditProfileActivity.this, android.R.layout.simple_spinner_item, list);
+        spinner.setAdapter(arrayAdapter);
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override

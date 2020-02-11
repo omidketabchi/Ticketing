@@ -100,7 +100,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight=".47"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     tools:text="21/02/2020" />
 
                 <TextView
@@ -110,7 +110,7 @@
                     android:layout_marginRight="16dp"
                     android:layout_weight=".20"
                     android:text="تاریخ تولد"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
