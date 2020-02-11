@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -18,7 +17,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-import com.daimajia.easing.linear.Linear;
 import com.example.ticketing.Adapter.FlightAdapter;
 import com.example.ticketing.Model.FlightModel;
 
@@ -83,9 +81,12 @@ public class DetailActivity extends AppCompatActivity {
         txtDestination.setText(destination);
         txtDate.setText(date);
 
-        if (type.equals("flight")) {
+        if (type.equals("insideFlight")) {
             imgIcon.setImageResource(R.drawable.ic_airplane_white_24dp);
-            getAllFlightTickets(source, destination, date);
+            getAllInsideFlightTickets(source, destination, date);
+        } else if (type.equals("outsideFlight")) {
+            getAllOutsideFlightTickets(source, destination, date);
+
         } else if (type.equals("train")) {
             getAllTrainTickets(source, destination, date);
 
@@ -94,9 +95,9 @@ public class DetailActivity extends AppCompatActivity {
         }
     }
 
-    private void getAllFlightTickets(String source, String destination, String date) {
+    private void getAllInsideFlightTickets(String source, String destination, String date) {
 
-        String url = "https://43aa1bff-3adc-4b2a-b908-617a7afb71b9.mock.pstmn.io/stuff/?" + "source=" + source + "&destination=" + destination + "&date=" + date;
+        String url = "https://b6f0fe80-c7b8-467c-a508-1de494258d2a.mock.pstmn.io/?" + "source=" + source + "&destination=" + destination + "&date=" + date;
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
@@ -117,6 +118,31 @@ public class DetailActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(DetailActivity.this);
         requestQueue.add(jsonArrayRequest);
     }
+
+    private void getAllOutsideFlightTickets(String source, String destination, String date) {
+
+        String url = "https://f1f1aa4d-f6cd-42fa-b9d8-dabe45cf7c7b.mock.pstmn.io/?" + "source=" + source + "&destination=" + destination + "&date=" + date;
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                parseFlightResponse(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(DetailActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(15000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        RequestQueue requestQueue = Volley.newRequestQueue(DetailActivity.this);
+        requestQueue.add(jsonArrayRequest);
+    }
+
 
     private void getAllBusTickets(String source, String destination, String date) {
 

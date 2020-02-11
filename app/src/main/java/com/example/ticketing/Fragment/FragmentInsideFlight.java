@@ -94,7 +94,7 @@ public class FragmentInsideFlight extends Fragment implements DatePickerDialog.O
 
         Intent intent = new Intent(getContext(), DetailActivity.class);
 
-        intent.putExtra("type", "flight");
+        intent.putExtra("type", "insideFlight");
         intent.putExtra("source", txtSource.getText().toString());
         intent.putExtra("destination", txtDestination.getText().toString());
         intent.putExtra("date", txtDate.getText().toString());
