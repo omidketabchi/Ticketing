@@ -169,6 +169,13 @@ public class DetailActivity extends AppCompatActivity {
                 Toast.makeText(DetailActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
             }
         });
+
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(15000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        RequestQueue requestQueue = Volley.newRequestQueue(DetailActivity.this);
+        requestQueue.add(jsonArrayRequest);
     }
 
     private void getAllTrainTickets(String source, String destination, String date) {
