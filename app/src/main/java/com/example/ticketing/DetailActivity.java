@@ -17,8 +17,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.ticketing.Adapter.BusAdapter;
 import com.example.ticketing.Adapter.FlightAdapter;
 import com.example.ticketing.Adapter.TrainAdapter;
+import com.example.ticketing.Model.BusModel;
+import com.example.ticketing.Model.ChairModel;
 import com.example.ticketing.Model.FlightModel;
 import com.example.ticketing.Model.TrainModel;
 
@@ -40,6 +43,8 @@ public class DetailActivity extends AppCompatActivity {
 
     List<FlightModel> flightModels;
     List<TrainModel> trainModels;
+    List<BusModel> busModels;
+    List<ChairModel> chairModels;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +60,8 @@ public class DetailActivity extends AppCompatActivity {
 
         flightModels = new ArrayList<>();
         trainModels = new ArrayList<>();
+        busModels = new ArrayList<>();
+        chairModels = new ArrayList<>();
 
         imgBack = (ImageView) findViewById(R.id.img_detail_back);
         imgIcon = (ImageView) findViewById(R.id.img_detail_icon);
@@ -90,12 +97,12 @@ public class DetailActivity extends AppCompatActivity {
             getAllInsideFlightTickets(source, destination, date);
         } else if (type.equals("outsideFlight")) {
             getAllOutsideFlightTickets(source, destination, date);
-
         } else if (type.equals("train")) {
             imgIcon.setImageResource(R.drawable.ic_train_white_24dp);
             getAllTrainTickets(source, destination, date);
 
         } else if (type.equals("bus")) {
+            imgIcon.setImageResource(R.drawable.ic_directions_bus_white_24dp);
             getAllBusTickets(source, destination, date);
         }
     }
@@ -149,7 +156,19 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void getAllBusTickets(String source, String destination, String date) {
+        String url = "https://ff6b20d9-f63c-4c39-9cdc-7e678c46fa48.mock.pstmn.io/?" + "source=" + source + "&destination=" + destination + "&date=" + date;
 
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                parseBusTicketResponse(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(DetailActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void getAllTrainTickets(String source, String destination, String date) {
@@ -249,5 +268,53 @@ public class DetailActivity extends AppCompatActivity {
         }
 
         recyclerView.setAdapter(new TrainAdapter(DetailActivity.this, trainModels));
+    }
+
+    private void parseBusTicketResponse(JSONArray response) {
+
+        for (int i = 0; i < response.length(); i++) {
+
+            try {
+
+                JSONObject jsonObject = response.getJSONObject(i);
+
+                BusModel busModel = new BusModel();
+
+                busModel.setId(jsonObject.getString("id"));
+                busModel.setTicketId(jsonObject.getString("ticket_id"));
+                busModel.setSource(jsonObject.getString("source"));
+                busModel.setDestination(jsonObject.getString("destination"));
+                busModel.setSourceTerminal(jsonObject.getString("sourceTerminal"));
+                busModel.setDestinationTerminal(jsonObject.getString("destinationTerminal"));
+                busModel.setDate(jsonObject.getString("date"));
+                busModel.setTime(jsonObject.getString("time"));
+                busModel.setType(jsonObject.getString("type"));
+                busModel.setDistance(jsonObject.getString("distance"));
+                busModel.setCapacity(jsonObject.getString("capacity"));
+                busModel.setPrice(jsonObject.getString("price"));
+
+                JSONArray jsonArray = jsonObject.getJSONArray("chairs");
+
+                for (int j = 0; j < jsonArray.length(); j++) {
+
+                    ChairModel chairModel = new ChairModel();
+
+                    JSONObject chairs = jsonArray.getJSONObject(j);
+
+                    chairModel.setChair(chairs.getString("chair"));
+                    chairModel.setStatus(chairs.getString("status"));
+
+                    chairModels.add(chairModel);
+                }
+
+                busModel.setChairModel(chairModels);
+                busModels.add(busModel);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        recyclerView.setAdapter(new BusAdapter(DetailActivity.this, busModels));
     }
 }
