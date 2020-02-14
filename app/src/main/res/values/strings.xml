@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Ticketing</string>
+    <string name="passengerDescription">شما صندلی خود را انتخاب کرده اید، لطفا یک شخص را به عنوان سرپرست مسافران یا نام مسافر انتخاب کنید.</string>
     <string name="description">جایی که دوست دارید بنشینید را در تصویر مشخص کنید، برای پیشگیری از مشکلات بعدی، لطفا به جنسیت مسافر صندطلی مجاور توجه فرمایید.</string>
 </resources>

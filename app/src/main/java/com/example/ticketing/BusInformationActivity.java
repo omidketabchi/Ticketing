@@ -84,6 +84,7 @@ public class BusInformationActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(BusInformationActivity.this, ChairSelectionActivity.class);
                 intent.putParcelableArrayListExtra("chair", (ArrayList<? extends Parcelable>) chairModels);
+                intent.putExtra("price", model.getPrice());
                 startActivity(intent);
             }
         });

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_fragmentTicketConfirmation_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="8dp"
+        app:cardCornerRadius="8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_margin="8dp"
+                android:text="ارسال ایمیل برای:"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/txt_fragmentTicketConfirmation_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="8dp"
+                android:textSize="16sp"
+                tools:text="ketabchi.omid@gmail.com" />
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_fragmentTicketConfirmation_discount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cv_fragmentTicketConfirmation_email"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="8dp"
+        app:cardCornerRadius="8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txt_fragmentTicketConfirmation_discount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_margin="8dp"
+                android:text="کد تخفیف دارید؟"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/edt_fragmentTicketConfirmation_discount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_fragmentTicketConfirmation_discount"
+                android:layout_margin="8dp"
+                android:background="@drawable/edt_style_blue"
+                android:hint="کد تخفیف را وارد کنید"
+                android:inputType="number"
+                android:padding="8dp" />
+
+            <TextView
+                android:id="@+id/txt_fragmentTicketConfirmation_applyDiscount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edt_fragmentTicketConfirmation_discount"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="8dp"
+                android:text="اعمال کد تخفیف"
+                android:textColor="@color/colorAccentAb"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_fragmentTicketConfirmation_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:cardElevation="16dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txt_fragmentTicketConfirmation_priceTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="مجموع قیمت:"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/txt_fragmentTicketConfirmation_priceValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:textColor="@color/colorAccentAb"
+                android:textSize="16sp"
+                tools:text="123,456 ریال" />
+
+            <Button
+                android:id="@+id/btn_fragmentTicketConfirmation_submit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_fragmentTicketConfirmation_priceValue"
+                android:layout_margin="8dp"
+                android:background="@drawable/btn_blue_style"
+                android:text="تایید و ادامه"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/sp16" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

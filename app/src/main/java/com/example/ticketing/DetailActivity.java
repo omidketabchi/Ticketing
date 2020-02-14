@@ -44,7 +44,6 @@ public class DetailActivity extends AppCompatActivity {
     List<FlightModel> flightModels;
     List<TrainModel> trainModels;
     List<BusModel> busModels;
-    List<ChairModel> chairModels;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +60,6 @@ public class DetailActivity extends AppCompatActivity {
         flightModels = new ArrayList<>();
         trainModels = new ArrayList<>();
         busModels = new ArrayList<>();
-        chairModels = new ArrayList<>();
 
         imgBack = (ImageView) findViewById(R.id.img_detail_back);
         imgIcon = (ImageView) findViewById(R.id.img_detail_icon);
@@ -301,6 +299,7 @@ public class DetailActivity extends AppCompatActivity {
                 busModel.setPrice(jsonObject.getString("price"));
 
                 JSONArray jsonArray = jsonObject.getJSONArray("chairs");
+                List<ChairModel> chairModels = new ArrayList<>();
 
                 for (int j = 0; j < jsonArray.length(); j++) {
 
@@ -316,6 +315,7 @@ public class DetailActivity extends AppCompatActivity {
 
                 busModel.setChairModel(chairModels);
                 busModels.add(busModel);
+                int k = 10;
 
             } catch (JSONException e) {
                 e.printStackTrace();

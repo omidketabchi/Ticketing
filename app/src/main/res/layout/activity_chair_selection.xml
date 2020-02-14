@@ -32,7 +32,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="16dp"
                 android:layout_toLeftOf="@+id/img_chairSelection_back"
-                android:text="انتخاب صندلی"
+                tools:text="انتخاب صندلی"
                 android:textColor="@color/colorWhite"
                 android:textSize="18sp" />
 
