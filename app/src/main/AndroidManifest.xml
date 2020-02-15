@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ChairSelectionActivity"></activity>
+        <activity android:name=".HotelMapActivity"></activity>
+        <activity android:name=".ChairSelectionActivity" />
         <activity android:name=".BusInformationActivity" />
         <activity android:name=".TrainInformationActivity" />
         <activity android:name=".DetailActivity" />

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cv_hotelItem_parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="8dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginBottom="4dp"
+    android:clickable="true"
+    android:foreground="?attr/selectableItemBackground"
+    app:cardCornerRadius="8dp">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/rl_hotelItem_relativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
+
+            <ImageView
+                android:id="@+id/img_hotelItem_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher_background" />
+
+            <TextView
+                android:id="@+id/txt_hotelItem_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="8dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="16sp"
+                tools:text="نام هتل" />
+
+            <androidx.appcompat.widget.AppCompatRatingBar
+                android:id="@+id/rt_hotelItem_ratingBar"
+                style="@android:style/Widget.Holo.Light.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="8dp"
+                android:numStars="5" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/txt_hotelItem_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rl_hotelItem_relativeLayout"
+            android:layout_alignParentRight="true"
+            android:layout_margin="8dp"
+            android:textSize="16sp"
+            tools:text="123,456 ریال" />
+
+        <TextView
+            android:id="@+id/txt_hotelItem_dateReservation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_hotelItem_price"
+            android:layout_alignParentRight="true"
+            android:layout_margin="8dp"
+            android:textSize="16sp"
+            tools:text="اولین تاریخ قابل رزرو: 1398/11/12" />
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

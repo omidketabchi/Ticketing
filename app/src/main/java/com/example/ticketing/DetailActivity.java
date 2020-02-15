@@ -23,6 +23,7 @@ import com.example.ticketing.Adapter.TrainAdapter;
 import com.example.ticketing.Model.BusModel;
 import com.example.ticketing.Model.ChairModel;
 import com.example.ticketing.Model.FlightModel;
+import com.example.ticketing.Model.HotelModel;
 import com.example.ticketing.Model.TrainModel;
 
 import org.json.JSONArray;
@@ -44,6 +45,7 @@ public class DetailActivity extends AppCompatActivity {
     List<FlightModel> flightModels;
     List<TrainModel> trainModels;
     List<BusModel> busModels;
+    List<HotelModel> hotelModels;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -323,5 +325,46 @@ public class DetailActivity extends AppCompatActivity {
         }
 
         recyclerView.setAdapter(new BusAdapter(DetailActivity.this, busModels));
+    }
+
+    private void getAllHotelTickets(String destination, String date) {
+
+        String url = "https://api.myjson.com/bins/ow3zu";
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+
+                for (int i = 0; i < response.length(); i++) {
+
+                    try {
+
+                        JSONObject jsonObject = response.getJSONObject(i);
+
+                        HotelModel hotelModel = new HotelModel();
+
+                        hotelModel.setId(jsonObject.getString("id"));
+                        hotelModel.setName(jsonObject.getString("name"));
+                        hotelModel.setCity(jsonObject.getString("city"));
+                        hotelModel.setCity(jsonObject.getString("star"));
+                        hotelModel.setCity(jsonObject.getString("bed_count"));
+                        hotelModel.setCity(jsonObject.getString("image"));
+                        hotelModel.setCity(jsonObject.getString("lat"));
+                        hotelModel.setCity(jsonObject.getString("lang"));
+                        hotelModel.setCity(jsonObject.getString("price"));
+
+                        hotelModels.add(hotelModel);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(DetailActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
